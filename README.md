@@ -1,1 +1,1 @@
-# Word-Guess-Game
+My first game created using Javasrcript and Jquery
