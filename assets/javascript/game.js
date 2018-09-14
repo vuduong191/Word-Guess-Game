@@ -24,16 +24,31 @@ $(document).ready(function() {
         console.log(linkemo);
         iframeemo.attr("src","./assets/gif/"+linkemo);
         console.log(iframeemo)
-        // iframeemo.addClass("emotion");
+        iframeemo.addClass("emotion");
         $("#emocon").empty()
         $("#emocon").append(iframeemo);
+    }
+    var addimgclue = function(index) {
+        var imgclue = $("<img>");
+        imgclue.attr("src","./assets/images/"+index);
+        imgclue.addClass("imgclue");
+        $(".imagecue").empty()
+        $(".imagecue").append(imgclue);
+    }
+    function guessresult(result) {
+        $("#guessresult").empty()
+        var resulttag = $("<p>");
+        resulttag.addClass("rightwrong");
+        resulttag.text(result)
+        $("#guessresult").append(resulttag);
     }
     
     var guessRem = 8
     var wins = 0
     $("#wins").append(wins)
     $("#guessRemained").append(guessRem)
-    var wordList = ["table","chair","mouse"]
+    var wordList = ["brainstorm","encouragement","springchicken","superbowl","windowshopping","serialkiller","scrambledeggs","couchpotato","highfive"]
+    var wordListClue = {"brainstorm":"q1.jpg","encouragement":"q2.jpg","springchicken":"q3.jpg","superbowl":"q4.jpg","windowshopping":"q5.jpg","serialkiller":"q6.jpg","scrambledeggs":"q7.jpg","couchpotato":"q8.jpg","highfive":"q9.jpg"}
     var mainWord = ""
     var wordstring = []
     var wordstringblind = []
@@ -55,7 +70,7 @@ $(document).ready(function() {
         $("#alreadyGuessed").empty()
         $("#characters").empty()
     }
-    // list of words already played
+
     function generateword(j){
         randomWordIndex = Math.floor(Math.random() * j);
         console.log("randomWordIndex=" + randomWordIndex)
@@ -67,8 +82,7 @@ $(document).ready(function() {
             wordstring.push(mainWord[i])
             wordstringblind.push("_")
         }
-        console.log(wordstring)
-        console.log(wordstringblind)
+        addimgclue(wordListClue[mainWord])
     }
     function newwordfilled(){
         for (var i=0; i< wordstringblind.length; i++){
@@ -82,6 +96,24 @@ $(document).ready(function() {
     generateword(wordList.length)
     newwordfilled()
     populateListOfLetters()
+
+    $(".resetbutton").on("click", function() {
+        reset()
+        generateword(wordList.length)
+        newwordfilled()
+        populateListOfLetters()
+        wins = 0;
+        $("#wins").empty()
+        $("#guessRemained").empty()
+        $("#wins").append(wins)
+        $("#guessRemained").append(guessRem)
+      });
+    $(".continuebutton").on("click", function() {
+        reset()
+        generateword(wordList.length)
+        newwordfilled()
+        populateListOfLetters()
+    });
     document.onkeyup = function(){
         var underscoreindex = 0;
         var hitkey = event.key;
@@ -95,9 +127,11 @@ $(document).ready(function() {
         } 
         if (guessright){
             addemo(emocheer)
+            guessresult("Correct")
             correctsound.play()
             } else {
             wrongsound.play()
+            guessresult("Incorrect")
             guessRem -= 1
             $("#guessRemained").empty()
             $("#guessRemained").append(guessRem)
@@ -123,32 +157,24 @@ $(document).ready(function() {
             wins +=1;
             $("#wins").empty();
             $("#wins").append(wins);
-            var continueplay = confirm("Continue!");
-            if(continueplay) {
-                reset()
-                generateword(wordList.length)
-                newwordfilled()
-                populateListOfLetters()
-            } else {
-                alert("Thank you for playing.")
-                $("<body>").empty()
-            }
+            guessresult("Winner")
+            alert("You won! Hit Continue to play more!");
+            // if(continueplay) {
+            //     reset()
+            //     generateword(wordList.length)
+            //     newwordfilled()
+            //     populateListOfLetters()
+            // } else {
+            //     alert("Thank you for playing.")
+            //     $("<body>").empty()
+            // }
 
         }
         if(guessRem == 0) {
             addemo(lose);
             boosound.play();
-            var continueplay = confirm("Continue!");
-            if(continueplay) {
-                reset()
-                generateword(wordList.length)
-                newwordfilled()
-                populateListOfLetters()
-            } 
-            else {
-                alert("Thank you for playing.")
-                $("<body>").empty()
-            }
+            guessresult("Loser")
+            alert("You lost. Hit Continue to play more!");
         }
         // console.log(wordstring)
         // console.log(wordstringblind)
