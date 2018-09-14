@@ -5,21 +5,39 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Page Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css" /> -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Indie+Flower|Pacifico">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" media="screen" href="./assets/css/main.css" />
+    <script src='https://cdn.jsdelivr.net/g/lodash@4(lodash.min.js+lodash.fp.min.js)'></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="./assets/javascript/game.js"></script>
 </head>
 <body>
-    <h1>HANGMAN 80S STYLE</h1>
-    <p>Press any key to get started!</p>
-    <p>wins</p>
-    <h1 id=wins></h1>
-    <p>Current Word</p>
-    <div id=characters></div>
-    <p>Number of Guesses Remaining</p>
-    <h3 id=guessRemained></h3>
-    <p>Letters Already Guessed</p>
-    <div id=alreadyGuessed></div>
+    <h1 id=gametitle>HANGMAN 80S STYLE</h1>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <div>
+                        <p class = info-cat>Current Word</p>
+                </div>
+                <div id=characters></div>
+                <div id = emocon></div>
+            </div>
+            <div class="col-sm-6">
+                <p>Press any key to get started!</p>
+                <p class = info-cat>Wins</p>
+                <h2 id=wins class = number></h2>
 
+                <div>
+                    <p class = info-cat>Number of Guesses Remaining</p>
+                </div>
+                <h2 id=guessRemained class = number></h2>
+                <div>
+                    <p class = info-cat>Letters</p>
+                </div>
+                <div id=alreadyGuessed></div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

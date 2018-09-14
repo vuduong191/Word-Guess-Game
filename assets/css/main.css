@@ -1,0 +1,51 @@
+.letter {
+    width: 30px;
+    height: 30px;
+    border: solid brown;
+    padding-bottom: 1.6em;
+    float: left;
+    margin: 2px;
+    text-align: center;
+    color:white;
+    font-size: 1.2em;
+    font-weight: 500;
+  }
+  .letter-display {
+    width: 50px;
+    height: 50px;
+    border: solid brown;
+    padding-bottom: 2em;
+    float: left;
+    margin: 4px;
+    text-align: center;
+    color:white;
+    font-size: 1.6em;
+    font-weight: 600;
+  }
+#characters {
+    margin-bottom:100px;
+}
+.emotion {
+    width: 380px ;
+}
+body{
+    background-image: url("../images/background.png")
+}
+#gametitle {
+    font-family: 'Indie Flower', Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    color: white;
+    margin:auto;
+    margin-top:30px;
+    font-size:5em;
+    text-align: center;
+}
+.info-cat {
+    font-family: Pacifico;
+    color: white;
+    font-size: 1.5em;
+
+}
+.number {
+    color:brown;
+    margin-left:30px;
+}
